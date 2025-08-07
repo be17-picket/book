@@ -1,6 +1,5 @@
-package org.example.spring.a.model;
+package org.example.spring.book.model;
 
-import com.example.demo.b.model.B;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -14,13 +13,13 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class A {
+public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idx;
-    private String a01;
-    private String a02;
+    private String title;
+    private String content;
 
-    @OneToMany(mappedBy = "a")
-    private List<B> bList;
+    @OneToMany(mappedBy = "book")
+    private List<Review> review;
 }

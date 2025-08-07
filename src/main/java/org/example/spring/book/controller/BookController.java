@@ -1,36 +1,36 @@
-package org.example.spring.student.controller;
+package org.example.spring.book.controller;
 
-import org.example.spring.student.service.StudentService;
+import com.example.demo.book.model.BookDto;
+import com.example.demo.book.service.BookService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/student")
-public class StudentController {
-    private final StudentService studentService;
-    public StudentController(StudentService studentService) {
-        this.studentService = studentService;
-    }
+@RequiredArgsConstructor
+@RequestMapping("/book")
+public class BookController {
+    private final BookService bookService;
 
     @PostMapping("/register")
-    public ResponseEntity register(@RequestBody StudentDto.Register dto) {
-        studentService.register(dto);
+    public ResponseEntity register(@RequestBody BookDto.Register dto) {
+        bookService.register(dto);
 
         return ResponseEntity.status(200).body("등록 성공");
     }
 
     @GetMapping("/list")
     public ResponseEntity list() {
-        List<StudentDto.Student> response = studentService.list();
+        List<BookDto.BookRes> response = bookService.list();
 
         return ResponseEntity.status(200).body(response);
     }
 
     @GetMapping("/read")
     public ResponseEntity read(Integer idx) {
-        StudentDto.Student response = studentService.read(idx);
+        BookDto.BookRes response = bookService.read(idx);
 
         return ResponseEntity.status(200).body(response);
     }
@@ -38,7 +38,7 @@ public class StudentController {
 
     @GetMapping("/search")
     public ResponseEntity search(String name) {
-        List<StudentDto.Student> response = studentService.search(name);
+        List<BookDto.BookRes> response = bookService.search(name);
 
         return ResponseEntity.status(200).body(response);
     }
