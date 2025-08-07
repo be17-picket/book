@@ -1,4 +1,4 @@
-package org.example.spring.review;
+package org.example.spring.review.model;
 
 import lombok.Builder;
 import lombok.Getter;
