@@ -1,26 +1,27 @@
-package org.example.spring.a.model;
+package org.example.spring.review.model;
 
-import com.example.demo.b.model.B;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Getter
 @Entity
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class A {
+
+public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idx;
-    private String a01;
-    private String a02;
+    private String content;
+    private Integer reviewScore;
 
-    @OneToMany(mappedBy = "a")
-    private List<B> bList;
+    @ManyToOne
+    @JoinColumn(name = "book_idx")
+    private Book book;
+
+
 }
